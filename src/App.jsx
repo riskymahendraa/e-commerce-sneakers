@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="text-3xl">hello</div>
+      <div className="text-3xl">hello world</div>
     </>
   );
 }
