@@ -1,18 +1,19 @@
-import axios from "axios";
 import "./index.css";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import ProductCard from "./components/ProductCard";
 
 function App() {
-  axios.get("http://127.0.0.1:8000/api/brand").then((res) => {
-    console.log(res.data);
-  });
-
   return (
     <>
       <Navbar />
-      <Hero />
-      <div className="text-3xl">hello</div>
+      <div className="container mx-auto">
+        <Hero />
+        <div className="my-5 max-w-xs md:max-w-full text-center leading-relaxed font-bold mx-auto text-xl md:text-3xl">
+          Toko Sepatu Sneakers Bali Original
+        </div>
+        <ProductCard />
+      </div>
     </>
   );
 }
