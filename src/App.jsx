@@ -9,7 +9,7 @@ function App() {
       <Navbar />
       <div className="container mx-auto">
         <Hero />
-        <div className="my-5 max-w-xs md:max-w-full text-center leading-relaxed font-bold mx-auto text-xl md:text-3xl">
+        <div className="my-5 max-w-xs md:max-w-full text-black text-center leading-relaxed font-bold mx-auto text-xl md:text-3xl">
           Toko Sepatu Sneakers Bali Original
         </div>
         <ProductCard />

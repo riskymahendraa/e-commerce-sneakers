@@ -11,3 +11,13 @@
 @theme {
   --font-sans: "Poppins", sans-serif;
 }
+
+/* global.css atau di file css tailwind */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE dan Edge lama */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
