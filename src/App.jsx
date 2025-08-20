@@ -2,6 +2,7 @@ import "./index.css";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import ProductCard from "./components/ProductCard";
+import NewArrivalCard from "./components/NewArrivalCard";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           Toko Sepatu Sneakers Bali Original
         </div>
         <ProductCard />
+        <NewArrivalCard />
       </div>
     </>
   );

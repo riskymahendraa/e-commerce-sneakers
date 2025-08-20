@@ -1,11 +1,11 @@
+import React from "react";
 import axios from "../lib/axios";
+import { useState, useEffect } from "react";
 import { getImageUrl } from "../utils/imageUrl";
 import { formatIDR } from "../utils/formatCurrency";
-import { useState, useEffect } from "react";
 
-const ProductCard = () => {
+const NewArrivalCard = () => {
   const [product, setProduct] = useState([]);
-
   useEffect(() => {
     axios
       .get("/product")
@@ -16,18 +16,20 @@ const ProductCard = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  const newArrivals = product.filter((p) => p.is_new_arrival === 1);
+
   return (
-    <div className="container max-w-xs mx-auto md:max-w-full">
+    <div className="container mt-5 max-w-xs mx-auto md:max-w-full">
       <div className="flex justify-between px-2 items-center">
         <div className="text-base md:text-2xl leading-relaxed font-medium">
-          Product For You
+          New Arrival
         </div>
         <div className="text-sm md:text-base">View All</div>
       </div>
       <div className="overflow-x-auto p-3 mt-2 scrollbar-hide">
         <div className="flex space-x-2 md:space-x-4 w-max">
-          {product.length > 0 &&
-            product.map((p) => (
+          {newArrivals.length > 0 &&
+            newArrivals.map((p) => (
               <div
                 key={p.id}
                 className="card-sm w-48 sm:w-48 md:w-64 flex-shrink-0 rounded-xl shadow-md"
@@ -63,4 +65,4 @@ const ProductCard = () => {
   );
 };
 
-export default ProductCard;
+export default NewArrivalCard;
