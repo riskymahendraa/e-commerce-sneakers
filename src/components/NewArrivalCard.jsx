@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "../lib/axios";
+import Button from "./Button";
 import { useState, useEffect } from "react";
 import { getImageUrl } from "../utils/imageUrl";
 import { formatIDR } from "../utils/formatCurrency";
@@ -10,7 +11,6 @@ const NewArrivalCard = () => {
     axios
       .get("/product")
       .then((res) => {
-        console.log(res.data);
         setProduct(res.data);
       })
       .catch((err) => console.log(err));
@@ -49,12 +49,8 @@ const NewArrivalCard = () => {
                     </span>
                   </p>
                   <div className="my-2 flex items-center card-actions justify-end">
-                    <button className="btn btn-xs sm:btn-sm border border-gray-400 transition-transform duration-300 ease-in-out hover:scale-105">
-                      Detail
-                    </button>
-                    <button className="btn btn-xs sm:btn-sm border border-gray-400 transition-transform duration-300 ease-in-out hover:scale-105">
-                      Add to Cart
-                    </button>
+                    <Button title="Detail" />
+                    <Button title="Add to Cart" />
                   </div>
                 </div>
               </div>

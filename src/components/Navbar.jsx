@@ -2,7 +2,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <div className=" navbar bg-base-100 shadow-sm">
+    <div className=" navbar bg-base-100 shadow-sm p-4">
       <div className="z-50 container mx-auto flex items-center justify-between">
         <a className="btn btn-ghost text-xl md:text-3xl">Sneakersku</a>
         <ul className="menu text-xs md:text-base menu-horizontal space-x-0 md:space-x-2">

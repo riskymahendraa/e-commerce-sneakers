@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import ProductCard from "./components/ProductCard";
 import NewArrivalCard from "./components/NewArrivalCard";
+import About from "./components/About";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         </div>
         <ProductCard />
         <NewArrivalCard />
+        <About />
       </div>
     </>
   );
