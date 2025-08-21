@@ -7,9 +7,7 @@ import Button from "./Button";
 
 const Services = () => {
   return (
-    // <div className=" mt-5 grid md:grid-cols-2 gap-8">
-    <div>
-      <h2 className="text-center text-2xl mb-6">Our Services</h2>
+    <div className="mt-3">
       <div className="max-w-xs mx-auto md:max-w-full grid md:grid-cols-2 gap-6">
         <div className="card shadow-md">
           <div className="card-body">
@@ -67,7 +65,6 @@ const Services = () => {
         </div>
       </div>
     </div>
-    // </div>
   );
 };
 
