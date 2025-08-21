@@ -5,6 +5,7 @@ import ProductCard from "./components/ProductCard";
 import NewArrivalCard from "./components/NewArrivalCard";
 import About from "./components/About";
 import Accordion from "./components/Accordion";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <About />
         <Accordion />
       </div>
+      <Footer />
     </>
   );
 }

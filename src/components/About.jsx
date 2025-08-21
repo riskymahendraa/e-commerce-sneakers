@@ -18,7 +18,7 @@ const About = () => {
           perferendis. Eos iste blanditiis voluptatem. Aliquam impedit, unde et
           autem iste eius provident.
         </div>
-        <div className="max-w-xs md:max-w-full text-justify border-0 md:border-t-[0.5px] border-gray-300 px-4 py-2 space-y-4">
+        <div className="max-w-xs pt-4 md:max-w-full text-justify border-0 md:border-t-[0.5px] border-gray-300 px-4 py-2 space-y-4">
           {/* Alamat */}
           <div className="flex items-start gap-3">
             <div className="text-blue-700 text-xl md:text-2xl flex-shrink-0">
