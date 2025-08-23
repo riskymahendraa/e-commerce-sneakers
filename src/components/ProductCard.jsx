@@ -1,5 +1,6 @@
 import axios from "../lib/axios";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 import { getImageUrl } from "../utils/imageUrl";
 import { formatIDR } from "../utils/formatCurrency";
 import { useState, useEffect } from "react";
@@ -15,6 +16,11 @@ const ProductCard = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const navigate = useNavigate();
+  const handleProductClick = (id) => {
+    navigate(`/product/${id}`);
+  };
 
   return (
     <div className="container max-w-xs mx-auto md:max-w-full">
@@ -47,7 +53,10 @@ const ProductCard = () => {
                     </span>
                   </p>
                   <div className="my-2 flex items-center card-actions justify-end">
-                    <Button title="Detail" />
+                    <Button
+                      onClick={() => handleProductClick(p.id)}
+                      title="Detail"
+                    />
                     <Button title="Add to Cart" />
                   </div>
                 </div>

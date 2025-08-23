@@ -1,13 +1,24 @@
 import React from "react";
 
-const Button = ({ title, icon: Icon }) => {
+const Button = ({ title, icon: Icon, variant, ...props }) => {
+  // base style
+  let baseStyle =
+    "border transition-transform duration-300 ease-in-out hover:scale-105";
+
+  // default button kecil
+  let sizeStyle = "btn btn-xs sm:btn-sm border-gray-400";
+
+  // kalau variant = size → bikin lebih gede
+  if (variant === "size") {
+    sizeStyle =
+      "px-4 py-2 text-base font-medium border-gray-600 rounded-md hover:bg-gray-200";
+  }
+
   return (
-    <div>
-      <button className="btn btn-xs sm:btn-sm border border-gray-400 transition-transform duration-300 ease-in-out hover:scale-105">
-        {Icon && <Icon />} {/* render icon kalau ada */}
-        {title}
-      </button>
-    </div>
+    <button {...props} className={`${baseStyle} ${sizeStyle}`}>
+      {Icon && <Icon />}
+      {title}
+    </button>
   );
 };
 
