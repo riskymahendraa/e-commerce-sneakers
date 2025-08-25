@@ -3,7 +3,7 @@ import React from "react";
 const Button = ({ title, icon: Icon, variant, ...props }) => {
   // base style
   let baseStyle =
-    "border transition-transform duration-300 ease-in-out hover:scale-105";
+    "border transition-transform rounded-md duration-300 ease-in-out hover:scale-105";
 
   // default button kecil
   let sizeStyle = "btn btn-xs sm:btn-sm border-gray-400";
