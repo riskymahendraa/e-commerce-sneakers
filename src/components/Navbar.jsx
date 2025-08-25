@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -36,9 +37,12 @@ const Navbar = () => {
               </ul>
             </details>
           </li>
-          <li>
-            <Button title="Sign in" />
-          </li>
+          <div className="flex items-center">
+            <div className="border-l h-6 px-2 border-gray-300"></div>
+            <li>
+              <Button title="Sign in" as="link" to="/login" />
+            </li>
+          </div>
         </ul>
       </div>
       <div className="bg-red-500 flex-none"></div>
