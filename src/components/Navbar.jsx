@@ -1,8 +1,32 @@
-import React from "react";
 import Button from "./Button";
+import axios from "../lib/axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [open, setOpen] = useState(null);
+  const [brands, setBrands] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/brand")
+      .then((res) => {
+        setBrands(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  useEffect(() => {
+    axios
+      .get("/category")
+      .then((res) => {
+        setCategories(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className=" navbar bg-base-100 shadow-sm p-4">
       <div className="z-50 container mx-auto flex items-center justify-between">
@@ -12,28 +36,50 @@ const Navbar = () => {
             <a>Browse All</a>
           </li>
           <li>
-            <details>
-              <summary>Brand</summary>
-              <ul className="bg-base-100 rounded-t-none p-2">
-                <li>
-                  <a>Link 1</a>
-                </li>
-                <li>
-                  <a>Link 2</a>
-                </li>
+            <details open={open === "brand"}>
+              <summary
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpen(open === "brand" ? null : "brand");
+                }}
+                className="cursor-pointer"
+              >
+                Brand
+              </summary>
+              <ul className="bg-base-100 rounded-t-none p-2 w-36">
+                {brands.length > 0 ? (
+                  brands.map((b) => (
+                    <li key={b.id}>
+                      <Link to={`/brand/${b.id}`}>{b.name}</Link>
+                    </li>
+                  ))
+                ) : (
+                  <li className="text-gray-400">Loading...</li>
+                )}
               </ul>
             </details>
           </li>
           <li>
-            <details>
-              <summary>Categories</summary>
-              <ul className="bg-base-100 rounded-t-none p-2">
-                <li>
-                  <a>Link 1</a>
-                </li>
-                <li>
-                  <a>Link 2</a>
-                </li>
+            <details open={open === "category"}>
+              <summary
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpen(open === "category" ? null : "category");
+                }}
+                className="cursor-pointer"
+              >
+                Categories
+              </summary>
+              <ul className="bg-base-100 rounded-t-none p-2 w-48">
+                {categories.length > 0 ? (
+                  categories.map((c) => (
+                    <li key={c.id}>
+                      <Link to={`/category/${c.id}`}>{c.name}</Link>
+                    </li>
+                  ))
+                ) : (
+                  <li className="text-gray-400">Loading...</li>
+                )}
               </ul>
             </details>
           </li>

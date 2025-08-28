@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "../lib/axios";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import { useState, useEffect } from "react";
 import { getImageUrl } from "../utils/imageUrl";
@@ -15,6 +16,11 @@ const NewArrivalCard = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const navigate = useNavigate();
+  const handleProductClick = (id) => {
+    navigate(`/product/${id}`);
+  };
 
   const newArrivals = product.filter((p) => p.is_new_arrival === 1);
 
@@ -49,7 +55,10 @@ const NewArrivalCard = () => {
                     </span>
                   </p>
                   <div className="my-2 flex items-center card-actions justify-end">
-                    <Button title="Detail" />
+                    <Button
+                      onClick={() => handleProductClick(p.id)}
+                      title="Detail"
+                    />
                     <Button title="Add to Cart" />
                   </div>
                 </div>
