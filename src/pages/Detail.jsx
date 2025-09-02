@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import getImageUrl from "../utils/imageUrl";
@@ -6,7 +5,6 @@ import axios from "../lib/axios";
 import Navbar from "../components/Navbar";
 import { formatIDR } from "../utils/formatCurrency";
 import { useState, useEffect } from "react";
-import Button from "../components/Button";
 import { FaInstagram, FaWhatsapp, FaFacebook, FaTiktok } from "react-icons/fa";
 
 const Detail = () => {

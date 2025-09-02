@@ -30,7 +30,7 @@ const NewArrivalCard = () => {
         <div className="text-base md:text-2xl leading-relaxed font-medium">
           New Arrival
         </div>
-        <div className="text-sm md:text-base">View All</div>
+        <Button title="View All" onClick={() => navigate("/new-arrival")} />
       </div>
       <div className="overflow-x-auto p-3 mt-2 scrollbar-hide">
         <div className="flex space-x-2 md:space-x-4 w-max">

@@ -5,7 +5,7 @@ import { getImageUrl } from "../utils/imageUrl";
 import { formatIDR } from "../utils/formatCurrency";
 import { useState, useEffect } from "react";
 
-const ProductCard = () => {
+const ProductCard = ({ showButton = true, showTitle = true }) => {
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
@@ -25,10 +25,15 @@ const ProductCard = () => {
   return (
     <div className="container max-w-xs mx-auto md:max-w-full">
       <div className="flex justify-between px-2 items-center">
-        <div className="text-base md:text-2xl leading-relaxed font-medium">
-          Product For You
-        </div>
-        <div className="text-sm md:text-base">View All</div>
+        {showTitle && (
+          <div className="text-base md:text-2xl leading-relaxed font-medium">
+            Product For You
+          </div>
+        )}
+
+        {showButton && (
+          <Button title="View All" onClick={() => navigate("/product")} />
+        )}
       </div>
       <div className="overflow-x-auto p-3 mt-2 scrollbar-hide">
         <div className="flex space-x-2 md:space-x-4 w-max">

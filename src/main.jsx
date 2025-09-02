@@ -5,6 +5,7 @@ import "./index.css";
 import App from "./App.jsx";
 import Detail from "./pages/Detail.jsx";
 import Login from "./pages/Login.jsx";
+import Product from "./pages/Product.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/" element={<App />} />
         <Route path="/product/:id" element={<Detail />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/product" element={<Product />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
