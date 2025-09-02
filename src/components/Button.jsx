@@ -9,7 +9,7 @@ const Button = ({ title, icon: Icon, variant, as, to, ...props }) => {
   // default button kecil
   let sizeStyle = "btn btn-xs sm:btn-sm border-gray-400";
 
-  // kalau variant = size → bikin lebih gede
+  // kalau variant = size → bikin lebih besar
   if (variant === "size") {
     sizeStyle =
       "px-4 py-2 text-base font-medium border-gray-600 rounded-md hover:bg-gray-200";

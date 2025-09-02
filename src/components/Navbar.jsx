@@ -13,7 +13,6 @@ const Navbar = () => {
       .get("/brand")
       .then((res) => {
         setBrands(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -22,7 +21,6 @@ const Navbar = () => {
       .get("/category")
       .then((res) => {
         setCategories(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);

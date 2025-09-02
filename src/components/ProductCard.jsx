@@ -5,22 +5,42 @@ import { getImageUrl } from "../utils/imageUrl";
 import { formatIDR } from "../utils/formatCurrency";
 import { useState, useEffect } from "react";
 
-const ProductCard = ({ showButton = true, showTitle = true }) => {
-  const [product, setProduct] = useState([]);
+const ProductCard = ({
+  showButton = true,
+  showTitle = true,
+  layout = "scroll",
+  variant = "home", // "home" = limit 6, "product" = semua data lewat props
+  products = [], // data diterima dari parent kalau di view all page
+}) => {
+  const [homeProducts, setHomeProducts] = useState([]);
 
+  // Fetch hanya untuk homepage (limit 6)
   useEffect(() => {
-    axios
-      .get("/product")
-      .then((res) => {
-        setProduct(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (variant === "home") {
+      axios
+        .get("/product")
+        .then((res) => {
+          setHomeProducts(res.data.slice(0, 6));
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [variant]);
 
   const navigate = useNavigate();
   const handleProductClick = (id) => {
     navigate(`/product/${id}`);
   };
+
+  const cardClass =
+    variant === "home" ? "w-48 sm:w-48 md:w-64 flex-shrink-0" : "w-full";
+
+  const cardLayout =
+    layout === "scroll"
+      ? "flex space-x-2 md:space-x-4 w-max"
+      : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5";
+
+  // Pilih data sesuai variant
+  const data = variant === "home" ? homeProducts : products;
 
   return (
     <div className="container max-w-xs mx-auto md:max-w-full">
@@ -31,17 +51,16 @@ const ProductCard = ({ showButton = true, showTitle = true }) => {
           </div>
         )}
 
-        {showButton && (
-          <Button title="View All" onClick={() => navigate("/product")} />
-        )}
+        {showButton && <Button title="View All" as="link" to="/product" />}
       </div>
+
       <div className="overflow-x-auto p-3 mt-2 scrollbar-hide">
-        <div className="flex space-x-2 md:space-x-4 w-max">
-          {product.length > 0 &&
-            product.map((p) => (
+        <div className={`${cardLayout}`}>
+          {data.length > 0 &&
+            data.map((p) => (
               <div
                 key={p.id}
-                className="card-sm w-48 sm:w-48 md:w-64 flex-shrink-0 rounded-xl shadow-md"
+                className={`card-sm rounded-xl shadow-md ${cardClass}`}
               >
                 <figure className="h-32 sm:h-40 md:h-48 w-full flex items-center justify-center">
                   <img
