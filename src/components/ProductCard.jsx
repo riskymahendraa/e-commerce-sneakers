@@ -6,6 +6,7 @@ import { formatIDR } from "../utils/formatCurrency";
 import { useState, useEffect } from "react";
 
 const ProductCard = ({
+  onAddToCart,
   showButton = true,
   showTitle = true,
   layout = "scroll",
@@ -81,7 +82,10 @@ const ProductCard = ({
                       onClick={() => handleProductClick(p.id)}
                       title="Detail"
                     />
-                    <Button title="Add to Cart" />
+                    <Button
+                      onClick={() => onAddToCart(p)}
+                      title="Add to Cart"
+                    />
                   </div>
                 </div>
               </div>
