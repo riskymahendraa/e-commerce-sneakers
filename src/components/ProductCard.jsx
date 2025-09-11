@@ -1,5 +1,6 @@
 import axios from "../lib/axios";
 import Button from "./Button";
+import Skeleton from "./Skeleton";
 import { useNavigate } from "react-router-dom";
 import { getImageUrl } from "../utils/imageUrl";
 import { formatIDR } from "../utils/formatCurrency";
@@ -14,6 +15,7 @@ const ProductCard = ({
   products = [], // data diterima dari parent kalau di view all page
 }) => {
   const [homeProducts, setHomeProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // Fetch hanya untuk homepage (limit 6)
   useEffect(() => {
@@ -22,6 +24,7 @@ const ProductCard = ({
         .get("/product")
         .then((res) => {
           setHomeProducts(res.data.slice(0, 6));
+          setLoading(false);
         })
         .catch((err) => console.log(err));
     }
@@ -57,39 +60,44 @@ const ProductCard = ({
 
       <div className="overflow-x-auto p-3 mt-2 scrollbar-hide">
         <div className={`${cardLayout}`}>
-          {data.length > 0 &&
-            data.map((p) => (
-              <div
-                key={p.id}
-                className={`card-sm rounded-xl shadow-md ${cardClass}`}
-              >
-                <figure className="h-32 sm:h-40 md:h-48 w-full flex items-center justify-center">
-                  <img
-                    className="h-full w-full rounded-xl object-cover"
-                    src={getImageUrl(p.image)}
-                    alt={p.name}
-                  />
-                </figure>
-                <div className="card-body p-3 sm:p-4">
-                  <h2 className="card-title text-sm sm:text-base">{p.name}</h2>
-                  <p>
-                    <span className="text-gray-500 text-sm sm:text-base">
-                      {formatIDR(p.price)}
-                    </span>
-                  </p>
-                  <div className="my-2 flex items-center card-actions justify-end">
-                    <Button
-                      onClick={() => handleProductClick(p.id)}
-                      title="Detail"
+          {loading
+            ? // tampilkan 6 skeleton
+              Array.from({ length: 8 }).map((_, i) => <Skeleton key={i} />)
+            : data.length > 0 &&
+              data.map((p) => (
+                <div
+                  key={p.id}
+                  className={`card-sm rounded-xl shadow-md ${cardClass}`}
+                >
+                  <figure className="h-32 sm:h-40 md:h-48 w-full flex items-center justify-center">
+                    <img
+                      className="h-full w-full rounded-xl object-cover"
+                      src={getImageUrl(p.image)}
+                      alt={p.name}
                     />
-                    <Button
-                      onClick={() => onAddToCart(p)}
-                      title="Add to Cart"
-                    />
+                  </figure>
+                  <div className="card-body p-3 sm:p-4">
+                    <h2 className="card-title text-sm sm:text-base">
+                      {p.name}
+                    </h2>
+                    <p>
+                      <span className="text-gray-500 text-sm sm:text-base">
+                        {formatIDR(p.price)}
+                      </span>
+                    </p>
+                    <div className="my-2 flex items-center card-actions justify-end">
+                      <Button
+                        onClick={() => handleProductClick(p.id)}
+                        title="Detail"
+                      />
+                      <Button
+                        onClick={() => onAddToCart(p)}
+                        title="Add to Cart"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
         </div>
       </div>
     </div>
