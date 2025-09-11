@@ -1,4 +1,5 @@
 import React from "react";
+import Skeleton from "../components/Skeleton";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
 import axios from "../lib/axios";
@@ -6,12 +7,15 @@ import { useState, useEffect } from "react";
 
 const Product = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get("/product")
       .then((res) => {
+        console.log(res.data);
         setProducts(res.data);
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -33,13 +37,22 @@ const Product = () => {
         </div>
 
         {/* List Produk */}
-        <ProductCard
-          variant="product"
-          layout="grid"
-          showButton={false}
-          showTitle={false}
-          products={products}
-        />
+        {loading ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <Skeleton key={i} />
+            ))}
+          </div>
+        ) : (
+          <ProductCard
+            variant="product"
+            layout="grid"
+            showButton={false}
+            showTitle={false}
+            products={products}
+            loading={loading}
+          />
+        )}
       </div>
     </div>
   );

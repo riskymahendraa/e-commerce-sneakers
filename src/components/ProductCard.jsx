@@ -60,7 +60,7 @@ const ProductCard = ({
 
       <div className="overflow-x-auto p-3 mt-2 scrollbar-hide">
         <div className={`${cardLayout}`}>
-          {loading
+          {variant === "home" && loading
             ? // tampilkan 6 skeleton
               Array.from({ length: 8 }).map((_, i) => <Skeleton key={i} />)
             : data.length > 0 &&
