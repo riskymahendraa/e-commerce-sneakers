@@ -1,4 +1,5 @@
 import "./index.css";
+import { Toast } from "./components/Toast";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -9,8 +10,15 @@ import Accordion from "./components/Accordion";
 import Footer from "./components/Footer";
 function App() {
   const [cart, setCart] = useState(0);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
   const handleAddToCart = () => {
     setCart((prev) => prev + 1);
+    setToastMessage("Product added to cart!");
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
   };
   return (
     <>
@@ -26,6 +34,7 @@ function App() {
         <Accordion />
       </div>
       <Footer />
+      {showToast && <Toast message={toastMessage} />}
     </>
   );
 }

@@ -107,7 +107,7 @@ const Navbar = ({ cart }) => {
                       />{" "}
                     </svg>
                     {cart > 0 && (
-                      <span className="badge bg-orange-400 badge-sm indicator-item">
+                      <span className="badge bg-blue-400 badge-sm indicator-item">
                         {cart}
                       </span>
                     )}
