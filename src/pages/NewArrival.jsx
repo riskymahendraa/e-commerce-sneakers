@@ -1,17 +1,17 @@
-import React from "react";
-import Skeleton from "../components/Skeleton";
 import Navbar from "../components/Navbar";
-import ProductCard from "../components/ProductCard";
+import { useState, useEffect } from "react";
 import { Toast } from "../components/Toast";
 import axios from "../lib/axios";
-import { useState, useEffect } from "react";
+import NewArrivalCard from "../components/NewArrivalCard";
+import Skeleton from "../components/Skeleton";
 
-const Product = () => {
+const NewArrival = () => {
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState(0);
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
+
   const handleAddToCart = () => {
     setCart((prev) => prev + 1);
     setToastMessage("Product added to cart!");
@@ -19,14 +19,18 @@ const Product = () => {
     const timer = setTimeout(() => setShowToast(false), 3000);
     return () => clearTimeout(timer);
   };
+
   useEffect(() => {
     axios
-      .get("/product")
+      .get("/new-arrivals")
       .then((res) => {
         setProducts(res.data);
+        console.log(res.data);
         setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
@@ -36,7 +40,7 @@ const Product = () => {
         {/* Header */}
         <div className="max-w-xs md:max-w-full mx-auto flex justify-between my-5 items-center">
           <h1 className="text-base md:text-2xl font-semibold tracking-wide">
-            All Products
+            New Arrivals
           </h1>
           <input
             type="text"
@@ -53,7 +57,7 @@ const Product = () => {
             ))}
           </div>
         ) : (
-          <ProductCard
+          <NewArrivalCard
             onAddToCart={handleAddToCart}
             variant="product"
             layout="grid"
@@ -69,4 +73,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default NewArrival;

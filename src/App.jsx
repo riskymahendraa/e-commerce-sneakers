@@ -16,9 +16,8 @@ function App() {
     setCart((prev) => prev + 1);
     setToastMessage("Product added to cart!");
     setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000);
+    const timer = setTimeout(() => setShowToast(false), 3000);
+    return () => clearTimeout(timer);
   };
   return (
     <>
@@ -29,7 +28,7 @@ function App() {
           Toko Sepatu Sneakers Bali Original
         </div>
         <ProductCard onAddToCart={handleAddToCart} />
-        <NewArrivalCard />
+        <NewArrivalCard onAddToCart={handleAddToCart} />
         <About />
         <Accordion />
       </div>
