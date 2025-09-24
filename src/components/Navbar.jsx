@@ -31,7 +31,7 @@ const Navbar = ({ cart }) => {
         <a className="btn btn-ghost text-xl md:text-3xl">Sneakersku</a>
         <ul className="menu text-xs md:text-base menu-horizontal space-x-0 md:space-x-2">
           <li>
-            <a>Browse All</a>
+            <Link to="/product">Browse All</Link>
           </li>
           <li>
             <details open={open === "brand"}>
